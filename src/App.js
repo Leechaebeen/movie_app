@@ -1,50 +1,67 @@
 import React from "react";
 import axios from "axios";
 import Movie from "./Movie";
+import "./App.css"; 
 
 // react 는 자동으로 모든 class component 의 render() 를 실행한다.
-// render() 는 React.Component 의 메소드를 오버라이딩 하는 것 
-class App extends React.Component
-{
+// render() 는 React.Component 의 메소드를 오버라이딩 하는 것
+class App extends React.Component {
   // setState() 를 사용할 때 state 안에 default 값을 선언할 필요는 없다.
-  state = 
-  {
-    isLoading : true,
-    movies : []
-  }
+  state = {
+    isLoading: true,
+    movies: [],
+  };
 
-  // 비동기로 json 데이터 가져오는 메소드 
+  // 비동기로 json 데이터 가져오는 메소드
   getMovies = async () => {
-    const { data : {
-              data : { movies } 
-            }
-          } = await axios.get("https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating");
+    const {
+      data: {
+        data: { movies },
+      },
+    } = await axios.get(
+      "https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating"
+    );
     // console.log(movies);
     // 기존 console.log(movies.data.data.movies);
 
-    // 왼쪽은 state 의 movies 이고 오른쪽은 axios 에서 온 movies 
+    // 왼쪽은 state 의 movies 이고 오른쪽은 axios 에서 온 movies
     //this.setState({movies : movies})
 
-    // 하지만 이렇게 써도 알아듣는다. state의 이름과 받아오는 데이터의 객체 이름인 movies가 같기 때문 
-    this.setState({ movies , isLoading : false });
-
+    // 하지만 이렇게 써도 알아듣는다. state의 이름과 받아오는 데이터의 객체 이름인 movies가 같기 때문
+    this.setState({ movies, isLoading: false });
   };
 
   // 렌더링이 되면 가장 먼저 호출되는 메소드
-  componentDidMount()
-  {
+  componentDidMount() {
     this.getMovies();
   }
 
-  // 렌더링 
-  render()
-  {
-    // state 의 값 
-    const { movies,  isLoading } = this.state;
-    return <div>{isLoading ? "Loading..." : movies.map(movie => {
-      console.log(movie);
-      return <Movie key={movie.id} id={movie.id} year={movie.year} title={movie.title} summary={movie.summary} poster={movie.medium_cover_image}/>
-    })}</div>;
+  // 렌더링
+  render() {
+    // state 의 값
+    const { movies, isLoading } = this.state;
+    return (
+      <section class="container">
+        {isLoading ? (
+          <div class="loader">
+            <span class="loader__text">Loading...</span>
+          </div>
+        ) : (
+          <div class="movies">
+            {movies.map((movie) => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+    );
   }
 }
 
