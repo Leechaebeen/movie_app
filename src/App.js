@@ -17,7 +17,10 @@ class App extends React.Component
     setTimeout (()=>{
       this.setState({isLoading : false})
     }, 6000);
+  
+    axios
   }
+
 
   // 렌더링 
   render()
@@ -25,8 +28,6 @@ class App extends React.Component
     const {isLoading} = this.state;
     return <div>{isLoading ? "Loading..." : "We are ready"}</div>;
   }
-
 }
-
 
 export default App;
