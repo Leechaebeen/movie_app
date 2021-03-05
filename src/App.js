@@ -35,7 +35,7 @@ const foodILike = [
   }
 ];
 
-// map 은 function 을 취해서 그 function을 array 의 각 item 에 적용한다. 그리고 각 연산의 결과로 array 를 만들어 반환한다.
+// map 은 function 을 취해서 그 function을 array 의 각 item 에 적용한다. 그리고 각 연산의 결과로 array를 만들어 반환한다.
 /*
   friends = ["a","b","c","d"];
 
@@ -52,13 +52,17 @@ const foodILike = [
        [0,0,0,0]
 */
 
+function renderFood(dish)
+{
+  console.log(dish);
+  return <Food name={dish.name} picture={dish.image}/>
+}
+
 function App() 
 {
   return (
     <div className="App">
-      {foodILike.map(dish =>(
-        <Food name={dish.name} picture={dish.image} />
-        ))}
+      {foodILike.map(renderFood)}
     </div>
   );
 }
