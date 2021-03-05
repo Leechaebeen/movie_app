@@ -1,10 +1,15 @@
 import React from "react";
-import Proptypes from "prop-types";
 
 // react 는 자동으로 모든 class component 의 render() 를 실행한다.
 // render() 는 React.Component 의 메소드를 오버라이딩 하는 것 
 class App extends React.Component
 {
+  constructor(props)
+  {
+    super(props);
+    console.log("hello");
+  }
+
   // 바꿀 데이터를 넣는다 
   state = 
   {
@@ -21,10 +26,29 @@ class App extends React.Component
     // 이런 방식은 추천하지 않는다.
     this.setState({ count: this.state.count - 1 });
   };
-  
 
+  // 렌더링 된 후 호출되는 메소드 
+  componentDidMount()
+  {
+    console.log("component rendered");
+  }
+
+  // 업데이트마다 호출되는 메소드 
+  componentDidUpdate()
+  {
+    console.log("I just updated");
+  }
+
+  // 컴포넌트가 떠날 때 호출되는 메소드
+  componentWillUnmount()
+  {
+    console.log("Goodbye, world");
+  }
+
+  // 렌더링 
   render()
   {
+    console.log("I'm rendering");
     return ( 
     <div>
       <h1>The number is : {this.state.count}</h1>
@@ -33,6 +57,7 @@ class App extends React.Component
     </div>
     );
   }
+
 }
 
 
