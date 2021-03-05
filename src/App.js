@@ -21,8 +21,8 @@ class App extends React.Component {
     } = await axios.get(
       "https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating"
     );
-    // console.log(movies);
-    // 기존 console.log(movies.data.data.movies);
+     //console.log(movies.genres);
+    //기존 console.log(movies.data.data.movies);
 
     // 왼쪽은 state 의 movies 이고 오른쪽은 axios 에서 온 movies
     //this.setState({movies : movies})
@@ -41,13 +41,13 @@ class App extends React.Component {
     // state 의 값
     const { movies, isLoading } = this.state;
     return (
-      <section class="container">
+      <section className="container">
         {isLoading ? (
-          <div class="loader">
-            <span class="loader__text">Loading...</span>
+          <div className="loader">
+            <span className="loader__text">Loading...</span>
           </div>
         ) : (
-          <div class="movies">
+          <div className="movies">
             {movies.map((movie) => (
               <Movie
                 key={movie.id}
@@ -56,6 +56,7 @@ class App extends React.Component {
                 title={movie.title}
                 summary={movie.summary}
                 poster={movie.medium_cover_image}
+                genres={movie.genres}
               />
             ))}
           </div>
