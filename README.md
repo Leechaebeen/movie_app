@@ -2,5 +2,5 @@
 
 React JS Fundamentals Course 
 
-## github pages
+## Github pages
 https://tech7billie.github.io/movie_app/
