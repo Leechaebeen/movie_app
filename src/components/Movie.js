@@ -3,10 +3,10 @@ import {Link} from "react-router-dom";
 import "./Movie.css";
 
 // 컴포넌트가 state 가 필요없을 경우에는 class component 가 될 필요가 없다.
-function Movie({ year, title, summary, poster, genres }) {
+function Movie({ id, year, title, summary, poster, genres }) {
   return (
     <Link to={{
-      pathname:"/movie-detail",
+      pathname: `/movie/${id}`,
       state: {
         year, title, summary, poster, genres 
       }
