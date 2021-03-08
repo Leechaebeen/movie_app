@@ -6,6 +6,8 @@ import "./Home.css";
 // react 는 자동으로 모든 class component 의 render() 를 실행한다.
 // render() 는 React.Component 의 메소드를 오버라이딩 하는 것
 class Home extends React.Component {
+  
+  // state 는 값을 기억하기 위해 사용한다.
   // setState() 를 사용할 때 state 안에 default 값을 반드시 선언할 필요는 없다.
   state = {
     isLoading: true,
